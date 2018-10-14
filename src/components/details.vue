@@ -1,24 +1,24 @@
 <template>
 <div class="detail-mainNew type">
   <ul>
-    <li class="rooms  on">
+    <li v-for="(hotel, index) in  hotels" :key="index"  :class="scopesDefault[index]?'on rooms':'off  rooms'"  @click="changeStatus(index)">
       <div class="wrap ">
         <div class="left   tjclick">
           <div class="pic tjclick rpDetail">
-            <img src="//pavo.elongstatic.com/i/mobile750_448/nw_000dYoWi.jpg" />
+            <img  :src="hotel.img" />
           </div>
           <div class="picroom-info">
             <div class="room">
-              中国大饭店
+              {{hotel.name}}
             </div>
             <div class="room-info">
-              <span>总机：010-65052266</span>
+              <span>总机：{{hotel.phone}}</span>
             </div>
             <div class="room-info">
-              <span>地址：北京建国门外大街甲一号</span>
+              <span>地址：{{hotel.adress}}</span>
             </div>
             <div class="room-info">
-              <span>距英皇中心距离：1.4公里步行预计21分钟</span>
+              <span>距英皇中心距离：{{hotel.distance}}</span>
             </div>
           </div>
         </div>
@@ -26,30 +26,30 @@
           <i></i>
         </div>
       </div>
-      <div class="info-list">
+      <div class="info-list" v-if="scopesDefault[index]">
         <ul>
-          <li class="roomdetail  ">
+          <li  v-for="(room, index) in  hotel.roomtype" :key="index" >
             <div class="left tjclick">
               <div class="bra clearfix">
-                豪华房（大床/双床）
+                {{room.name}}
               </div>
               <div class="xstm">
-                <span class="suppliername">付费早餐：180净价/208+15%</span>
+                <span class="suppliername">付费早餐：{{hotel.breakfast}}</span>
               </div>
               <div class="act">
-                <span class="tag" style="color:#4499ff;border: 1px solid #4499ff;">楼层：18-21</span>
+                <span class="tag" style="color:#4499ff;border: 1px solid #4499ff;">楼层：{{room.floor}}</span>
               </div>
             </div>
             <div class="value">
               <div class="price">
                 &yen;
-                <span>1400/1580</span>
+                <span>{{room.price}}</span>
               </div>
-            </div> </li>
+            </div>
+          </li>
         </ul>
       </div> </li>
   </ul>
-  {{name}}
 </div>
 </template>
 
@@ -60,8 +60,20 @@ export default {
   data () {
     return {
       id: 0,
+      hotelsList: [],
       hotels: [],
-      name: ''
+      scopesDefault: []
+    }
+  },
+  methods: {
+    changeStatus (index) {
+      console.log(index)
+      if (this.scopesDefault[index] === true) {
+        this.$set(this.scopesDefault, index, false)
+      } else {
+        this.$set(this.scopesDefault, index, true)
+      }
+      console.log(this.scopesDefault)
     }
   },
   created: function () {
@@ -69,8 +81,8 @@ export default {
     this.$http.get('./api/hotels').then((response) => {
       response = response.body
       if (response.errno === ERR_OK1) {
-        this.hotels = response.data
-        this.name = this.hotels[this.id].name
+        this.hotelsList = response.data
+        this.hotels = this.hotelsList[this.id].hotels
         console.log(this.hotels)
       }
     })
@@ -141,8 +153,8 @@ export default {
     width: 5px;
     height: 5px;
     position: absolute;
-    top: 3px;
-    left: 4px;
+    top: 6px;
+    left: 5px;
     border: 1px solid #888;
     border-width: 1px 0px 0px 1px;
     -webkit-transform: rotate(-135deg);
@@ -176,19 +188,16 @@ export default {
     line-height: .938rem;
   }
   .detail-mainNew ul li .wrap .left .room-info {
-    font-size: .688rem;
-    line-height: .688rem;
+    font-size: 12px;
+    line-height: 12px;
     margin-top: 8px;
     color: #888;
-    white-space: nowrap;
-    font-size: 0.625rem;
-    line-height: 0.625rem;
+
+    overflow: hidden;
     color: #898989;
   }
   .detail-mainNew ul li .info-list {
-    display: none;
     background: #FBFBFB;
-    display: block !important;
   }
   .detail-mainNew ul li:first-child {
     border-top: 0;
@@ -232,7 +241,7 @@ export default {
     -webkit-touch-callout: none;
   }
   .detail-mainNew ul li .info-list ul li .left {
-    width: 75%;
+    width: 60%;
   }
   .detail-mainNew ul li .info-list ul li .left div {
     line-height: 1.5rem;
@@ -266,5 +275,19 @@ export default {
   }
   .detail-mainNew ul li .info-list ul li * .price span {
     font-size: 1.063rem;
+  }
+  .detail-mainNew ul li .wrap .de-btn i:after {
+    border-color: #888;
+    content: "";
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    border: 1px solid #888;
+    border-width: 1px 0px 0px 1px;
+    -webkit-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    transform: rotate(-135deg);
   }
 </style>

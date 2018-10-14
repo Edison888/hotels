@@ -9,7 +9,7 @@
         </div>
         <ul class="search-city-list">
           <!-- 延迟加载 -->
-          <li v-for="(city, index) in hotelsList" :key="index" class="city1">
+          <li v-for="(city, index) in hotelsList" :key="index" :class="'city'+(index+1)" >
             <router-link  :to="{path:'/details',query: {id:index} }">
               <div><h2>{{city.name}}</h2><p>共有<span>{{city.hotels.length}}</span>家酒店</p><i class="icon-left"></i></div>
             </router-link></li>
@@ -61,8 +61,56 @@ export default {
     position: relative;
   }
   .page-search .search-city .search-city-list li.city1 {
-    background: url(//m.elongstatic.com/static/webapp/hotel/img/search/citys.jpg) 0 0;
-    background-size: 100% 750px;
+    background: url(../assets/citys.jpg) 0 0;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city2 {
+    background: url(../assets/citys.jpg) 0 -300px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city3 {
+    background: url(../assets/citys.jpg) 0 -75px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city4 {
+    background: url(../assets/citys.jpg) 0 -150px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city5 {
+    background: url(../assets/citys.jpg) 0 -225px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city6 {
+    background: url(../assets/citys.jpg) 0 -375px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city7 {
+    background: url(../assets/citys.jpg) 0 -450px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city8 {
+    background: url(../assets/citys.jpg) 0 -525px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city9 {
+    background: url(../assets/citys.jpg) 0 -600px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city10 {
+    background: url(../assets/citys.jpg) 0 -675px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city11 {
+    background: url(../assets/citys.jpg) 0 -750px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city12 {
+    background: url(../assets/citys.jpg) 0 -825px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.city13 {
+    background: url(../assets/citys.jpg) 0 -900px;
+    background-size: 100% 975px;
   }
   .page-search .search-city .search-city-list li div {
     padding: 0 24px;
