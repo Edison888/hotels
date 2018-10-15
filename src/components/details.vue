@@ -1,8 +1,14 @@
 <template>
 <div class="detail-mainNew type">
+  <div class="search-city-title">
+    <div class="bar bar-nav flight-order-head" style="opacity: 14.24;">
+      <a class="icon icon-left-nav pull-left icon-back tjclick" data-rel="back" ></a>
+      <h1 class="title">{{cityname}}</h1>
+    </div>
+  </div>
   <ul>
-    <li v-for="(hotel, index) in  hotels" :key="index"  :class="scopesDefault[index]?'on rooms':'off  rooms'"  @click="changeStatus(index)">
-      <div class="wrap ">
+    <li v-for="(hotel, index) in  hotels" :key="index"  :class="scopesDefault[index]?'on rooms':'off  rooms'"  >
+      <div class="wrap " @click="changeStatus(index)">
         <div class="left   tjclick">
           <div class="pic tjclick rpDetail">
             <img  :src="hotel.img" />
@@ -18,7 +24,7 @@
               <span>地址：{{hotel.adress}}</span>
             </div>
             <div class="room-info">
-              <span>距英皇中心距离：{{hotel.distance}}</span>
+              <span>{{hotel.distance}}</span>
             </div>
           </div>
         </div>
@@ -34,10 +40,11 @@
                 {{room.name}}
               </div>
               <div class="xstm">
-                <span class="suppliername">付费早餐：{{hotel.breakfast}}</span>
+                <span class="suppliername">早餐：{{hotel.breakfast}}</span>
               </div>
               <div class="act">
                 <span class="tag" style="color:#4499ff;border: 1px solid #4499ff;">楼层：{{room.floor}}</span>
+                <a :href="'tel:'+hotel.phone"><span class="tag" style="color:#ff9111;border: 1px solid #ff9111;">电话咨询</span></a>
               </div>
             </div>
             <div class="value">
@@ -62,7 +69,8 @@ export default {
       id: 0,
       hotelsList: [],
       hotels: [],
-      scopesDefault: []
+      scopesDefault: [],
+      cityname: ''
     }
   },
   methods: {
@@ -83,6 +91,7 @@ export default {
       if (response.errno === ERR_OK1) {
         this.hotelsList = response.data
         this.hotels = this.hotelsList[this.id].hotels
+        this.cityname = this.hotelsList[this.id].name
         console.log(this.hotels)
       }
     })
@@ -189,8 +198,8 @@ export default {
   }
   .detail-mainNew ul li .wrap .left .room-info {
     font-size: 12px;
-    line-height: 12px;
-    margin-top: 8px;
+    line-height: 15px;
+    margin-top: 4px;
     color: #888;
 
     overflow: hidden;
@@ -228,6 +237,7 @@ export default {
     -webkit-align-items: center;
     -moz-align-items: center;
     align-items: center;
+    width:auto;
   }
   .detail-mainNew ul li .info-list ul li:nth-child(1) {
     margin: 0;
@@ -241,7 +251,7 @@ export default {
     -webkit-touch-callout: none;
   }
   .detail-mainNew ul li .info-list ul li .left {
-    width: 60%;
+    width: 77%;
   }
   .detail-mainNew ul li .info-list ul li .left div {
     line-height: 1.5rem;
@@ -268,13 +278,15 @@ export default {
     color: #f55;
     text-align: right;
     vertical-align: middle;
-    width: 130px;
+    width: 141px;
+    position: absolute;
+    right:10px;
   }
   .detail-mainNew ul li .info-list ul li * .price {
     font-size: .813rem;
   }
   .detail-mainNew ul li .info-list ul li * .price span {
-    font-size: 1.063rem;
+    font-size: 18px;
   }
   .detail-mainNew ul li .wrap .de-btn i:after {
     border-color: #888;
@@ -289,5 +301,57 @@ export default {
     -webkit-transform: rotate(-135deg);
     -ms-transform: rotate(-135deg);
     transform: rotate(-135deg);
+  }
+  .bar {
+    position: relative;
+    z-index: 10000;
+    height: 44px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #fff;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    left: 0px;
+    right: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .bar-nav {
+    background-color: #fcfcfc;
+    color: #444;
+    box-shadow: 0px 1px 2px #ddd;
+  }
+  .pull-left {
+    float: left;
+  }
+  .bar .icon {
+    position: relative;
+    z-index: 20;
+    width: 34px;
+    height: 44px;
+    display: inline-block;
+    line-height: 44px;
+    font-size: 24px;
+    color: #fff;
+    padding-top: 3px;
+  }
+  .bar .icon-back {
+    color: #858585;
+    margin-left: -10px;
+    padding-left: 10px;
+  }
+  .title {
+    position: absolute;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 -10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 44px;
+    text-align: center;
+    white-space: nowrap;
   }
 </style>

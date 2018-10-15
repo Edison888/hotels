@@ -9,7 +9,7 @@
         </div>
         <ul class="search-city-list">
           <!-- 延迟加载 -->
-          <li v-for="(city, index) in hotelsList" :key="index" :class="'city'+(index+1)" >
+          <li v-for="(city, index) in hotelsList" :key="index" :class="'city'+city.enname" >
             <router-link  :to="{path:'/details',query: {id:index} }">
               <div><h2>{{city.name}}</h2><p>共有<span>{{city.hotels.length}}</span>家酒店</p><i class="icon-left"></i></div>
             </router-link></li>
@@ -60,55 +60,55 @@ export default {
     overflow: hidden;
     position: relative;
   }
-  .page-search .search-city .search-city-list li.city1 {
+  .page-search .search-city .search-city-list li.citybeijing {
     background: url(../assets/citys.jpg) 0 0;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city2 {
-    background: url(../assets/citys.jpg) 0 -300px;
-    background-size: 100% 975px;
-  }
-  .page-search .search-city .search-city-list li.city3 {
+  .page-search .search-city .search-city-list li.cityshanghai {
     background: url(../assets/citys.jpg) 0 -75px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city4 {
+  .page-search .search-city .search-city-list li.cityguangzhou {
     background: url(../assets/citys.jpg) 0 -150px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city5 {
+  .page-search .search-city .search-city-list li.cityshenzhen {
     background: url(../assets/citys.jpg) 0 -225px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city6 {
+  .page-search .search-city .search-city-list li.citywuhan {
+    background: url(../assets/citys.jpg) 0 -301px;
+    background-size: 100% 975px;
+  }
+  .page-search .search-city .search-city-list li.cityhangzhou {
     background: url(../assets/citys.jpg) 0 -375px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city7 {
+  .page-search .search-city .search-city-list li.citysuzhou {
     background: url(../assets/citys.jpg) 0 -450px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city8 {
+  .page-search .search-city .search-city-list li.cityhefei {
     background: url(../assets/citys.jpg) 0 -525px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city9 {
+  .page-search .search-city .search-city-list li.citynanjing {
     background: url(../assets/citys.jpg) 0 -600px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city10 {
-    background: url(../assets/citys.jpg) 0 -675px;
+  .page-search .search-city .search-city-list li.cityhainan{
+    background: url(../assets/citys.jpg) 0 -676px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city11 {
+  .page-search .search-city .search-city-list li.citychengdu {
     background: url(../assets/citys.jpg) 0 -750px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city12 {
+  .page-search .search-city .search-city-list li.cityyichang {
     background: url(../assets/citys.jpg) 0 -825px;
     background-size: 100% 975px;
   }
-  .page-search .search-city .search-city-list li.city13 {
+  .page-search .search-city .search-city-list li.citychongqing {
     background: url(../assets/citys.jpg) 0 -900px;
     background-size: 100% 975px;
   }
